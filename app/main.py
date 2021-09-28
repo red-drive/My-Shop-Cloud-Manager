@@ -11,6 +11,10 @@ Sales_Return_Old = 0 # (Sales Return)For Recording old transaction to compare to
 
 push = PushBullet(pb_key)
 
+@app.route("/")
+def hello():
+    return "Hello Sir"
+
 @app.route("/sales/<salesamount>/<location>") 
 def sales_happened(salesamount,location):
     global Sales_Old
@@ -50,6 +54,3 @@ def sales_return_happened(salesreturnamount,location):
     else:
         print("You in a serious trouble")
     return("Sales Return Updated")
-
-if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
