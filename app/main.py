@@ -12,7 +12,7 @@ Sales_Return_Old = 0 # (Sales Return)For Recording old transaction to compare to
 try:
     push = PushBullet(pb_key)
 except:
-    print("No Key Found")
+    pass
 
 @app.route("/")
 def hello():
@@ -29,7 +29,7 @@ def sales_happened(salesamount,location):
         try:
             push.push_note(title="Sales in "+loc,body="Amount of Rp. "+str(sale-Sales_Old))
         except:
-            print("Not Push Bullet Key")
+            pass
         Sales_Old = sale # Update the new transaction to Sales Old because we need to be updated
     elif sale < Sales_Old: # This happens when the old sale is higher than new sale
         print("Sale Deleted : "+str(Sales_Old-sale)) # Gives us the difference
@@ -37,7 +37,7 @@ def sales_happened(salesamount,location):
         try:
             push.push_note(title="Sales Del in "+loc,body="Amount of Rp. "+str(Sales_Old-sale))
         except:
-            print("Not Push Bullet Key")
+            pass
         Sales_Old = sale # Update the new transaction to Sales Old because we need to be updated
     else: # If the updated details are not high and not low and same this will be returned
         print("You in Serious Trouble, lol nothing serious")
@@ -56,7 +56,7 @@ def sales_return_happened(salesreturnamount,location):
         try:
             push.push_note(title="Return in "+loc,body="Amount of Rp. "+str(sale_return-Sales_Return_Old))
         except:
-            print("Not Push Bullet Key")
+            pass
         Sales_Return_Old = sale_return
     elif sale_return < Sales_Return_Old:
         print("Sales Return Deleted : "+str(Sales_Return_Old-sale_return))
@@ -64,7 +64,7 @@ def sales_return_happened(salesreturnamount,location):
         try:
             push.push_note(title="Return in "+loc,body="Amount of Rp. "+str(Sales_Return_Old-sale_return))
         except:
-            print("Not Push Bullet Key")
+            pass
         Sales_Return_Old = sale_return
     else:
         print("You in a serious trouble")
