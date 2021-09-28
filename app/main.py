@@ -4,7 +4,8 @@ import os
 from  pushbullet import PushBullet
 
 app = Flask(__name__)
-pb_key = os.environ.get("PB_KEY")
+
+pb_key = os.environ.get('PB_KEY')
 
 Sales_Old = 0 # (Sale)For Recording old transaction to compare to next transaction
 Sales_Return_Old = 0 # (Sales Return)For Recording old transaction to compare to next transaction
