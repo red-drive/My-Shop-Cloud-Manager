@@ -17,7 +17,7 @@ K_Sales_Return_Old = 0
 
 @app.route("/")
 def hello():
-    return "Hello Sir"
+    return "Website is Up and Running"
 
 @app.route("/sales/<salesamount>/<location>")
 def sales_happened(salesamount,location):
@@ -27,7 +27,7 @@ def sales_happened(salesamount,location):
     if location in ["Pulliparakunnu","pulliparakunnu","pulli"]:
         if sale > P_Sales_Old: # This happen when the new sale is higher than old sale
             try:
-                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=🧾 Sales in "+loc+"\nAmount of Rs. "+str(sale-P_Sales_Old))
+                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=🧾 Sales in Pulliparakunnu \nAmount of Rs. "+str(sale-P_Sales_Old))
             except:
                 pass
             P_Sales_Old = sale # Update the new transaction to Sales Old because we need to be updated
@@ -35,7 +35,7 @@ def sales_happened(salesamount,location):
             print("Sale Deleted : "+str(P_Sales_Old-sale)) # Gives us the difference
             print("Location : "+loc) # This will explain the location thing, where is the f***g shop
             try:
-                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=❌ Sales Del in "+loc+"\nAmount of Rs. "+str(P_Sales_Old-sale))
+                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=❌ Sales Del in Pulliparakunnu \nAmount of Rs. "+str(P_Sales_Old-sale))
             except:
                 pass
             P_Sales_Old = sale # Update the new transaction to Sales Old because we need to be updated
@@ -44,7 +44,7 @@ def sales_happened(salesamount,location):
             print("Current Sale : " + str(sale - K_Sales_Old))  # Gives us the difference
             print("Location : " + loc)  # This will explain the location thing, where is the f***g shop
             try:
-                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=🧾Sales in " + loc+"Amount of Rs. " + str(sale - K_Sales_Old))
+                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=🧾Sales in Kalletumkara \nAmount of Rs. " + str(sale - K_Sales_Old))
             except:
                 pass
             P_Sales_Old = sale  # Update the new transaction to Sales Old because we need to be updated
@@ -52,7 +52,7 @@ def sales_happened(salesamount,location):
             print("Sale Deleted : " + str(K_Sales_Old - sale))  # Gives us the difference
             print("Location : " + loc)  # This will explain the location thing, where is the f***g shop
             try:
-                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=❌ Sales Del in " + loc+"Amount of Rs." + str(K_Sales_Old - sale))
+                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=❌ Sales Del in Kalletumkara \nAmount of Rs." + str(K_Sales_Old - sale))
             except:
                 pass
             K_Sales_Old = sale  # Update the new transaction to Sales Old because we need to be updated
@@ -67,12 +67,12 @@ def sales_return_happened(salesreturnamount,location):
     global P_Sales_Return_Old,K_Sales_Return_Old
     sale_return = int(salesreturnamount)
     loc = location
-    if location == "Pulliparakunnu":
+    if location in ["Pulliparakunnu","pulliparakunnu","pulli"]:
         if sale_return > P_Sales_Return_Old:
             print("Current Sales Return : "+str(sale_return-P_Sales_Return_Old))
             print("Location : "+loc)
             try:
-                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=🧾Return in "+loc+"Amount of Rs. "+str(sale_return-P_Sales_Return_Old))
+                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=🧾Return in Pulliparakunnu \nAmount of Rs. "+str(sale_return-P_Sales_Return_Old))
             except:
                 pass
             P_Sales_Return_Old = sale_return
@@ -80,16 +80,16 @@ def sales_return_happened(salesreturnamount,location):
             print("Sales Return Deleted : "+str(P_Sales_Return_Old-sale_return))
             print("Location : "+loc)
             try:
-                requests.get("https://api.telegram.org/bot/"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=❌ Return in "+loc+"Amount of Rs. "+str(P_Sales_Return_Old-sale_return))
+                requests.get("https://api.telegram.org/bot/"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=❌ Return in Pulliparakunnu \nAmount of Rs. "+str(P_Sales_Return_Old-sale_return))
             except:
                 pass
             P_Sales_Return_Old = sale_return
-    elif location == "Kalletumkara":
+    elif location in ["Kalletumkara","kalletumkara","kta"]:
         if sale_return > K_Sales_Return_Old:
             print("Current Sales Return : "+str(sale_return-K_Sales_Return_Old))
             print("Location : "+loc)
             try:
-                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=🧾Return in "+loc+"Amount of Rs. "+str(sale_return-K_Sales_Return_Old))
+                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=🧾Return in Kalletumkara \nAmount of Rs. "+str(sale_return-K_Sales_Return_Old))
             except:
                 pass
             K_Sales_Return_Old = sale_return
@@ -97,7 +97,7 @@ def sales_return_happened(salesreturnamount,location):
             print("Sales Return Deleted : "+str(K_Sales_Return_Old-sale_return))
             print("Location : "+loc)
             try:
-                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=❌ Return in "+loc+"Amount of Rs. "+str(K_Sales_Return_Old-sale_return))
+                requests.get("https://api.telegram.org/bot"+str(bottoken)+"/sendMessage?chat_id="+str(groupid)+"&text=❌ Return in Kalletumkara \nAmount of Rs. "+str(K_Sales_Return_Old-sale_return))
             except:
                 pass
             K_Sales_Return_Old = sale_return
